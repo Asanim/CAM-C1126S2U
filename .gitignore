@@ -3,3 +3,8 @@ ArcFaceGo_RV1109_App/
 
 rknn-toolkit-lite/
 rknn-toolkit-lite.*
+
+.gitreview
+build/
+install/
+.vscode
