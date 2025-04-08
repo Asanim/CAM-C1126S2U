@@ -58,6 +58,16 @@ while the example app is called a sdk, it does nto provide any method to compile
 
     Peripheral Interface：Debug serial port, Typec otg interface, multi-function expansion interface
 
+
+## Setup
+
+This repo contains convenience scripts to setup and install the OS compilation sdk. Otherwise, you may follow the steps outlined in: https://wiki.t-firefly.com/en/CAM-C11092U/Source_code.html
+
+```bash
+./scripts/install_sdk.sh
+```
+
+
 ## Steps taken
 
 ### logging in 
