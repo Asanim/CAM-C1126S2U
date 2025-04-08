@@ -1,3 +1,6 @@
 [submodule "rknn-toolkit2"]
 	path = rknn-toolkit2
 	url = https://github.com/airockchip/rknn-toolkit2.git
+[submodule "rknpu"]
+	path = rknpu
+	url = https://github.com/airockchip/rknpu.git
