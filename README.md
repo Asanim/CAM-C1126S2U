@@ -78,7 +78,7 @@ rknn toolkit lite offers convenience scripts for running the inference engine wi
 ## future work:
 
 **Peripherals Adaptation**
-the camera offers rich peripheral adaptation as noted here. it would be very useful to include some work to utilize this: 
+the camera offers rich peripheral adaptation as noted here. it would be very useful to develop external circuits to utilize this: 
 - GPIO: control pan / tilt 
 - GPIO: Control power on/off with an external timer. For instance, to turn off a the device for a specific period of time in order to conserve power use.
 - Ethernet support
