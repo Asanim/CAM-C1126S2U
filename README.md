@@ -84,8 +84,23 @@ the camera offers rich peripheral adaptation as noted here. it would be very use
 - Ethernet support
 - i2c bus for sensors like imu, light, humidity 
 - UART interfaces
+- measuring battery charge
 
 https://wiki.t-firefly.com/en/CAM-C11092U/Device_adaptation.html
+
+**alternate hardware**
+battery connect cameras are highly available in multiple hardware options like the raspberry pi but more notably in any android phone.
+
+create an andorid apk cmake
+https://developer.android.com/ndk/guides
+
+
+https://developer.android.com/studio/projects/add-native-code
+
+https://developer.android.com/studio/projects/configure-cmake
+
+other:
+https://forum.qt.io/topic/148514/create-android-apk-with-cmake
 
 ## Steps taken
 
