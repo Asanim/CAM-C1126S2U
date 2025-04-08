@@ -32,6 +32,8 @@ the github project is here: https://gitlab.com/firefly-linux/external/arcuvc_app
 
 while the example app is called a sdk, it does nto provide any method to compile or code to interface with the camera or NPU
 
+of particular interest are the infrared and led floodlights, useful in scenarios of low brightness or monitoring nighttime environments 
+
 ## CAM-CRV1126S2U Specs
 
     CPU:Quad-Core ARM Cortex-A7，RISC-V MCU
@@ -73,6 +75,17 @@ rknn toolkit lite offers convenience scripts for running the inference engine wi
 ./scripts/download-rknn-toolkit.sh
 ```
 
+## future work:
+
+**Peripherals Adaptation**
+the camera offers rich peripheral adaptation as noted here. it would be very useful to include some work to utilize this: 
+- GPIO: control pan / tilt 
+- GPIO: Control power on/off with an external timer. For instance, to turn off a the device for a specific period of time in order to conserve power use.
+- Ethernet support
+- i2c bus for sensors like imu, light, humidity 
+- UART interfaces
+
+https://wiki.t-firefly.com/en/CAM-C11092U/Device_adaptation.html
 
 ## Steps taken
 
@@ -100,6 +113,20 @@ cd /opt/
 
 v4l2-ctl --device=/dev/video0 --stream-mmap=3 --stream-to=test_frame.raw --stream-count=1
 
+### Controlling the LEDs
+
+infrared:
+
+[root@RV1126_RV1109:/]# echo 100 > /sys/class/leds/PWM-IR/brightness 
+[root@RV1126_RV1109:/]# echo 0 > /sys/class/leds/PWM-IR/brightness 
+
+RGB LED:
+
+[root@RV1126_RV1109:/]# cat /sys/class/leds/PWM-RGB/max_brightness 
+255
+
+[root@RV1126_RV1109:/]# echo 0 > /sys/class/leds/PWM-RGB/brightness 
+[root@RV1126_RV1109:/]# echo 255 > /sys/class/leds/PWM-RGB/brightness 
 
 
 download and install dpkg https://ftp.debian.org/debian/pool/main/d/dpkg/
