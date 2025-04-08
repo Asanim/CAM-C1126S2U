@@ -5,6 +5,8 @@ documentation is here: https://wiki.t-firefly.com/en/CAM-C11092U/index.html
 
 creating a self developed application 
 
+the camera itself is like an ai enabled go pro. 
+
 ## purpose
 
 to investigate the time to port our application to the target device as a standalone application. 
@@ -29,6 +31,32 @@ the install script copies the lib, bin, web etc folders to appropriate locations
 the github project is here: https://gitlab.com/firefly-linux/external/arcuvc_app
 
 while the example app is called a sdk, it does nto provide any method to compile or code to interface with the camera or NPU
+
+## CAM-CRV1126S2U Specs
+
+    CPU:Quad-Core ARM Cortex-A7，RISC-V MCU
+
+    NPU:2.0Tops, support INT8/ INT16
+
+    DDR: DDR3 / 1GB
+
+    Flash: eMMC / 8GB
+
+    Display: MIPI-DSI interface，1080P@60fps
+
+    Camera: Dual MIPI-CSI interface to adapt to RGB & IR binocular camera
+
+    ISP:14M ISP 2.0 with 3 frame HDR(Line-based/Frame-based/DCG)
+
+    Hardware Encoding:Support 4K H.264/H.265 coding
+    -3840 x 2160@30 fps+720p@30 fps encoding
+
+    Hardware Decoding:Support 4K H.264/H.265 decoding
+    -3840 x 2160@30 encoding + 3840 x 2160@30 fps decoding
+
+    RTC：Peripheral RTC
+
+    Peripheral Interface：Debug serial port, Typec otg interface, multi-function expansion interface
 
 ## Steps taken
 
