@@ -75,6 +75,15 @@ rknn toolkit lite offers convenience scripts for running the inference engine wi
 ./scripts/download-rknn-toolkit.sh
 ```
 
+## Building
+
+/home/sam/cam-crv1126/rknpu/rknn/rknn_api/examples/rknn_yolov5_demo
+
+
+
+
+
+
 ## future work:
 
 **Peripherals Adaptation**
