@@ -64,7 +64,13 @@ while the example app is called a sdk, it does nto provide any method to compile
 This repo contains convenience scripts to setup and install the OS compilation sdk. Otherwise, you may follow the steps outlined in: https://wiki.t-firefly.com/en/CAM-C11092U/Source_code.html
 
 ```bash
-./scripts/install_sdk.sh
+./scripts/install-sdk.sh
+```
+
+rknn toolkit lite offers convenience scripts for running the inference engine with resnet in python
+
+```bash
+./scripts/download-rknn-toolkit.sh
 ```
 
 
