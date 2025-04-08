@@ -63,21 +63,14 @@ of particular interest are the infrared and led floodlights, useful in scenarios
 
 ## Setup
 
-This repo contains convenience scripts to setup and install the OS compilation sdk. Otherwise, you may follow the steps outlined in: https://wiki.t-firefly.com/en/CAM-C11092U/Source_code.html
-
-```bash
-./scripts/install-sdk.sh
-```
-
-rknn toolkit lite offers convenience scripts for running the inference engine with resnet in python
-
-```bash
-./scripts/download-rknn-toolkit.sh
-```
+./scripts init-build-machine.sh
 
 ## Building
 
-/home/sam/cam-crv1126/rknpu/rknn/rknn_api/examples/rknn_yolov5_demo
+the target example is located in: rknpu/rknn/rknn_api/examples/rknn_yolov5_demo
+
+run 
+./scripts/setup-device.sh
 
 
 
@@ -163,7 +156,8 @@ download and install dpkg https://ftp.debian.org/debian/pool/main/d/dpkg/
 
 
 
-### Appendix 1:
+### Appendix 1: Example Applications
+The following example applications are available for the camera module from the Rockchip (manufacturer) website:
 
 google drive folders: https://drive.google.com/file/d/1IZdh5glkCnq0s2vJfRMubDnMPyrqqLNt/view
 
@@ -171,3 +165,20 @@ google drive folders: https://drive.google.com/file/d/1IZdh5glkCnq0s2vJfRMubDnMP
 https://wiki.t-firefly.com/en/CAM-C11092U/Algorithm_adaptation.html
 
 https://wiki.t-firefly.com/en/CAM-C11092U/Algorithm_diy.html
+
+
+
+### Appendix 2: Compiling OS SDK
+
+
+This repo contains convenience scripts to setup and install the OS compilation sdk. Otherwise, you may follow the steps outlined in: https://wiki.t-firefly.com/en/CAM-C11092U/Source_code.html
+
+```bash
+./scripts/install-sdk.sh
+```
+
+rknn toolkit lite offers convenience scripts for running the inference engine with resnet in python
+
+```bash
+./scripts/download-rknn-toolkit.sh
+```
