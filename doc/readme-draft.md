@@ -83,6 +83,8 @@ run the executable
 ./run_rv1109_rv1126.sh 
 
 
+
+
 ## future work:
 
 **Peripherals Adaptation**
@@ -95,3 +97,123 @@ the camera offers rich peripheral adaptation as noted here. it would be very use
 - measuring battery charge
 
 https://wiki.t-firefly.com/en/CAM-C11092U/Device_adaptation.html
+
+**alternate hardware**
+battery connect cameras are highly available in multiple hardware options like the raspberry pi but more notably in any android phone.
+
+create an andorid apk cmake
+https://developer.android.com/ndk/guides
+
+
+https://developer.android.com/studio/projects/add-native-code
+
+https://developer.android.com/studio/projects/configure-cmake
+
+other:
+https://forum.qt.io/topic/148514/create-android-apk-with-cmake
+
+
+## Website design 
+
+goals. should be comparable to: https://www.presien.com/
+
+https://webflow.com/templates/html/ripple-saas-website-template - would choose this for PRM...
+
+https://ripple-template.webflow.io/
+
+free and responsive
+https://webflow.com/templates/html/roon-landing-page-website-template - would choose this as second for PRM...
+https://roon-template.webflow.io/
+
+
+interesting transtiions
+https://ledgernotes-template.webflow.io/post/user-guides-1
+
+close second: https://webflow.com/templates/html/kayo-website-template
+
+
+Chosen template:
+https://webflow.com/templates/template-licenses - see the free template section (is quite permissive)
+
+https://webflow.com/templates/html/fortress-construction-website-template
+solid design: https://fortress-template-free.webflow.io/
+
+
+## Steps taken
+
+### logging in 
+
+plug in the camera to your pc / development machine via the usb port on the side
+
+enumerate devices connected 
+
+adb devices 
+
+adb shell
+
+generates a root prompt. if there are multiple devices conencted to your machine ie an andoird phone, specify the id
+
+### camera check
+camera may be interface as with any standard linux machine:
+
+v4l2-ctl --list-outputs
+
+returns ioctl: VIDIOC_ENUMOUTPUT
+
+
+cd /opt/
+
+v4l2-ctl --device=/dev/video0 --stream-mmap=3 --stream-to=test_frame.raw --stream-count=1
+
+### Controlling the LEDs
+
+infrared:
+
+[root@RV1126_RV1109:/]# echo 100 > /sys/class/leds/PWM-IR/brightness 
+[root@RV1126_RV1109:/]# echo 0 > /sys/class/leds/PWM-IR/brightness 
+
+RGB LED:
+
+[root@RV1126_RV1109:/]# cat /sys/class/leds/PWM-RGB/max_brightness 
+255
+
+[root@RV1126_RV1109:/]# echo 0 > /sys/class/leds/PWM-RGB/brightness 
+[root@RV1126_RV1109:/]# echo 255 > /sys/class/leds/PWM-RGB/brightness 
+
+
+download and install dpkg https://ftp.debian.org/debian/pool/main/d/dpkg/
+
+
+
+
+
+
+
+
+
+### Appendix 1: Example Applications
+The following example applications are available for the camera module from the Rockchip (manufacturer) website:
+
+google drive folders: https://drive.google.com/file/d/1IZdh5glkCnq0s2vJfRMubDnMPyrqqLNt/view
+
+
+https://wiki.t-firefly.com/en/CAM-C11092U/Algorithm_adaptation.html
+
+https://wiki.t-firefly.com/en/CAM-C11092U/Algorithm_diy.html
+
+
+
+### Appendix 2: Compiling OS SDK
+
+
+This repo contains convenience scripts to setup and install the OS compilation sdk. Otherwise, you may follow the steps outlined in: https://wiki.t-firefly.com/en/CAM-C11092U/Source_code.html
+
+```bash
+./scripts/install-sdk.sh
+```
+
+rknn toolkit lite offers convenience scripts for running the inference engine with resnet in python
+
+```bash
+./scripts/download-rknn-toolkit.sh
+```
