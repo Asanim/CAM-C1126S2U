@@ -5,3 +5,4 @@ rknn-toolkit-lite/
 rknn-toolkit-lite.*
 build/
 python/
+download/
