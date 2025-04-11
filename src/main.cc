@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #include "inference_handler.h"
-#include <vector>
 
 int main(int argc, char **argv)
 {

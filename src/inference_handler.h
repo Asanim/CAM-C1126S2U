@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 #ifndef INFERENCE_HANDLER_H
 #define INFERENCE_HANDLER_H
 
@@ -37,6 +38,9 @@ public:
     ~InferenceHandler();
 
     bool initialize();
+
+    bool runInference(unsigned char *image_data, int height, int width, int channel);
+
     bool runInference();
     void postProcessAndSave();
 

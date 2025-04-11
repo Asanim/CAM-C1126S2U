@@ -124,6 +124,76 @@ bool InferenceHandler::prepareInput()
     return true;
 }
 
+bool InferenceHandler::runInference(unsigned char *image_data, int height, int width, int channel)
+{
+    img_width_ = width;
+    img_height_ = height;
+    img_channel_ = channel;
+
+    if (!image_data)
+    {
+        printf("Invalid image data\n");
+        return false;
+    }
+
+    // Allocate resize buffer
+    resize_buf_ = malloc(height_ * width_ * channel_);
+    if (!resize_buf_)
+    {
+        printf("Failed to allocate resize buffer\n");
+        return false;
+    }
+
+    // Resize the input image
+    rga_resize(&rga_ctx_, -1, image_data, img_width_, img_height_, -1, resize_buf_, width_, height_);
+
+    // Prepare input tensor
+    rknn_input inputs[1];
+    memset(inputs, 0, sizeof(inputs));
+    inputs[0].index = 0;
+    inputs[0].type = RKNN_TENSOR_UINT8;
+    inputs[0].size = width_ * height_ * channel_;
+    inputs[0].fmt = RKNN_TENSOR_NHWC;
+    inputs[0].buf = resize_buf_;
+
+    if (rknn_inputs_set(ctx_, io_num_.n_input, inputs) < 0)
+    {
+        printf("rknn_inputs_set failed\n");
+        return false;
+    }
+
+    // Run inference
+    if (rknn_run(ctx_, nullptr) < 0)
+    {
+        printf("rknn_run failed\n");
+        return false;
+    }
+
+    // Get output tensors
+    rknn_output outputs[io_num_.n_output];
+    memset(outputs, 0, sizeof(outputs));
+    for (int i = 0; i < io_num_.n_output; i++)
+    {
+        outputs[i].want_float = 0;
+    }
+
+    if (rknn_outputs_get(ctx_, io_num_.n_output, outputs, nullptr) < 0)
+    {
+        printf("rknn_outputs_get failed\n");
+        return false;
+    }
+
+    // Post-process the results
+    post_process((uint8_t *)outputs[0].buf, (uint8_t *)outputs[1].buf, (uint8_t *)outputs[2].buf, height_, width_,
+                 box_conf_threshold_, nms_threshold_, (float)width_ / img_width_, (float)height_ / img_height_,
+                 out_zps_, out_scales_, &detect_result_group_);
+
+    // Release output tensors
+    rknn_outputs_release(ctx_, io_num_.n_output, outputs);
+
+    return true;
+}
+
 bool InferenceHandler::runInference()
 {
     if (!prepareInput())
