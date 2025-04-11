@@ -8,3 +8,6 @@ rknn-toolkit-lite.*
 build/
 install/
 .vscode
+build/
+python/
+download/

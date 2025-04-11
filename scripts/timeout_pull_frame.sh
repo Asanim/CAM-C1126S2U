@@ -11,10 +11,10 @@ for DEVICE in /dev/video*; do
         echo "Processing $DEVICE..."
         
         # Generate a unique output filename
-        OUTPUT_FILE="$OUTPUT_DIR/$(basename "$DEVICE")_frame.raw"
+        OUTPUT_FILE="$OUTPUT_DIR/$(basename "$DEVICE")_frame.jpg"
         
-        # Capture a single frame with a timeout of 5 seconds
-        timeout 5 v4l2-ctl --device="$DEVICE" --stream-mmap=3 --stream-to="$OUTPUT_FILE" --stream-count=1
+        # Capture a single frame with a timeout of 5 seconds using ffmpeg
+        timeout 5 ffmpeg -y -f v4l2 -i "$DEVICE" -frames:v 1 "$OUTPUT_FILE"
         
         # Check if the frame was successfully captured
         if [[ $? -eq 0 ]]; then
