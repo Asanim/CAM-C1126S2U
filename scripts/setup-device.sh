@@ -18,9 +18,10 @@ install_inference_example() {
     adb push $SCRIPT_PATH/../rknpu/rknn/rknn_api/examples/rknn_yolov5_demo/install/rknn_yolov5_demo /userdata/
 }
 
+adb push $SCRIPT_PATH/target/start.sh /tmp/
 adb push $SCRIPT_PATH/target/install-aws-greengrass.sh /tmp/
-adb push $SCRIPT_PATH/target/download/azul-zulu-java11-jdk.tar.gz /tmp/
-adb push $SCRIPT_PATH/target/download/greengrass-nucleus-latest.zip /tmp/
+# adb push $SCRIPT_PATH/target/download/azul-zulu-java11-jdk.tar.gz /tmp/
+# adb push $SCRIPT_PATH/target/download/greengrass-nucleus-latest.zip /tmp/
 
 # Run install-aws-greengrass.sh on the device to install 
 adb shell "chmod +x /tmp/install-aws-greengrass.sh && /tmp/install-aws-greengrass.sh"
