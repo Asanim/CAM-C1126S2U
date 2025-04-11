@@ -18,6 +18,7 @@ set(RGA_DIR ${CMAKE_SOURCE_DIR}/3rdparty/rga)
 include_directories(${RGA_DIR}/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 # rknn api
 set(RKNN_API_PATH ${CMAKE_SOURCE_DIR}/rknpu/rknn/rknn_api/librknn_api)
@@ -33,6 +34,7 @@ add_executable(rknn_yolov5_demo
         src/rga_func.c
         src/postprocess.cc
         src/main.cc
+        src/utils.cc
         )
 
 target_link_libraries(rknn_yolov5_demo
