@@ -14,18 +14,18 @@ else()
 endif()
 
 # rga
-set(RGA_DIR ${CMAKE_SOURCE_DIR}/../3rdparty/rga)
+set(RGA_DIR ${CMAKE_SOURCE_DIR}/3rdparty/rga)
 include_directories(${RGA_DIR}/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # rknn api
-set(RKNN_API_PATH ${CMAKE_SOURCE_DIR}/../../librknn_api)
+set(RKNN_API_PATH ${CMAKE_SOURCE_DIR}/rknpu/rknn/rknn_api/librknn_api)
 include_directories(${RKNN_API_PATH}/include)
 set(RKNN_API_LIB ${RKNN_API_PATH}/${LIB_ARCH}/librknn_api.so)
 
 #stb
-include_directories(${CMAKE_SOURCE_DIR}/../3rdparty/)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/)
 
 set(CMAKE_INSTALL_RPATH "lib")
 
