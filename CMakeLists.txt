@@ -35,6 +35,7 @@ add_executable(rknn_yolov5_demo
         src/postprocess.cc
         src/main.cc
         src/utils.cc
+        src/inference_handler.cc
         )
 
 target_link_libraries(rknn_yolov5_demo
