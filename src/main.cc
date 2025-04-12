@@ -47,6 +47,7 @@ int main(int argc, char **argv)
                 printf("Failed to run inference\n");
                 av_freep(&rgb_data);
                 break;
+
             }
 
             av_freep(&rgb_data);
