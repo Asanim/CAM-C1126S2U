@@ -1,97 +1,102 @@
+# CAM-CRV1126 Project
 
-this repo investigates application development on the rv1126, particularly the standalone camera module: 
+This repository investigates application development on the RV1126, particularly the standalone camera module.
 
-documentation is here: https://wiki.t-firefly.com/en/CAM-C11092U/index.html
+Documentation: [CAM-C11092U Documentation](https://wiki.t-firefly.com/en/CAM-C11092U/index.html)
 
-creating a self developed application 
+The camera itself is like an AI-enabled GoPro.
 
-the camera itself is like an ai enabled go pro. 
+---
 
-## purpose
+## Purpose
 
-to investigate the time to port our application to the target device as a standalone application. 
+To investigate the time required to port our application to the target device as a standalone application.
 
-1. porting to arch of device including replace hardware dependant libraries ie camera interfacing, 
-2. internet connection 
-3. aws greengrass installation and reliable operating
+### Objectives:
+1. Porting to the architecture of the device, including replacing hardware-dependent libraries (e.g., camera interfacing).
+2. Establishing an internet connection.
+3. Installing and ensuring reliable operation of AWS Greengrass.
 
-quadcore armv7l which is already faster than our original resource constrained device (raspberry pi 2). 
-32 bit native
+The device features a quad-core ARMv7L processor, which is already faster than our original resource-constrained device (Raspberry Pi 2). It is 32-bit native.
 
-the goal is to get a mvp setup as quickly as possible, hence I shall not attempt to recompile a fully workable os for it, simply use the busybox as is or by copying applications and tools as needed.
+The goal is to get an MVP setup as quickly as possible. Hence, I will not attempt to recompile a fully workable OS for it, but simply use BusyBox as is or by copying applications and tools as needed.
 
-a sample application for the base firmware can be found: https://en.t-firefly.com/doc/download/85.html
+A sample application for the base firmware can be found here: [Sample Application](https://en.t-firefly.com/doc/download/85.html)
 
+### Arc Face Go SDK
 
-arc face go sdk: https://drive.google.com/drive/folders/14G_Pdt5fiUMp1MxWn1fek2ezb9F3HRTm
+- [Arc Face Go SDK](https://drive.google.com/drive/folders/14G_Pdt5fiUMp1MxWn1fek2ezb9F3HRTm)
+- The Arc Face Go presents a simple example using a self-contained precompiled application and dependencies stored as tar archives.
+- The install script copies the `lib`, `bin`, `web`, etc., folders to appropriate locations on the hard drive.
+- GitHub project: [ArcUVC App](https://gitlab.com/firefly-linux/external/arcuvc_app)
 
-the arc face go presents a simple example using a self contained percompiled application and dependencies stored as tar archives
-the install script copies the lib, bin, web etc folders to appropriate locations on the hard drive 
+While the example app is called an SDK, it does not provide any method to compile or code to interface with the camera or NPU.
 
-the github project is here: https://gitlab.com/firefly-linux/external/arcuvc_app
+### Features of Interest
 
-while the example app is called a sdk, it does nto provide any method to compile or code to interface with the camera or NPU
+- Infrared and LED floodlights, useful in scenarios of low brightness or nighttime monitoring.
 
-of particular interest are the infrared and led floodlights, useful in scenarios of low brightness or monitoring nighttime environments 
+---
 
-## CAM-CRV1126S2U Specs
+## CAM-CRV1126S2U Specifications
 
-    CPU:Quad-Core ARM Cortex-A7，RISC-V MCU
+- **CPU**: Quad-Core ARM Cortex-A7, RISC-V MCU
+- **NPU**: 2.0Tops, supports INT8/INT16
+- **DDR**: DDR3 / 1GB
+- **Flash**: eMMC / 8GB
+- **Display**: MIPI-DSI interface, 1080P@60fps
+- **Camera**: Dual MIPI-CSI interface to adapt to RGB & IR binocular camera
+- **ISP**: 14M ISP 2.0 with 3-frame HDR (Line-based/Frame-based/DCG)
+- **Hardware Encoding**:
+  - 4K H.264/H.265 encoding: 3840 x 2160@30 fps + 720p@30 fps encoding
+- **Hardware Decoding**:
+  - 4K H.264/H.265 decoding: 3840 x 2160@30 encoding + 3840 x 2160@30 fps decoding
+- **RTC**: Peripheral RTC
+- **Peripheral Interface**: Debug serial port, Type-C OTG interface, multi-function expansion interface
 
-    NPU:2.0Tops, support INT8/ INT16
-
-    DDR: DDR3 / 1GB
-
-    Flash: eMMC / 8GB
-
-    Display: MIPI-DSI interface，1080P@60fps
-
-    Camera: Dual MIPI-CSI interface to adapt to RGB & IR binocular camera
-
-    ISP:14M ISP 2.0 with 3 frame HDR(Line-based/Frame-based/DCG)
-
-    Hardware Encoding:Support 4K H.264/H.265 coding
-    -3840 x 2160@30 fps+720p@30 fps encoding
-
-    Hardware Decoding:Support 4K H.264/H.265 decoding
-    -3840 x 2160@30 encoding + 3840 x 2160@30 fps decoding
-
-    RTC：Peripheral RTC
-
-    Peripheral Interface：Debug serial port, Typec otg interface, multi-function expansion interface
-
+---
 
 ## Setup
 
+```bash
 ./scripts init-build-machine.sh
+```
+
+---
 
 ## Building
 
-the target example is located in: rknpu/rknn/rknn_api/examples/rknn_yolov5_demo
+The target example is located in: `rknpu/rknn/rknn_api/examples/rknn_yolov5_demo`
 
-run 
-./scripts/setup-device.sh
+### Steps:
+1. Run the setup script:
+   ```bash
+   ./scripts/setup-device.sh
+   ```
+2. Log into the device:
+   ```bash
+   adb shell
+   ```
+3. Navigate to the demo directory:
+   ```bash
+   cd /userdata/rknn_yolov5_demo
+   ```
+4. Run the executable:
+   ```bash
+   ./run_rv1109_rv1126.sh
+   ```
 
-then log into the device 
+---
 
-adb shell
+## Future Work
 
-cd /userdata/rknn_yolov5_demo
+### Peripherals Adaptation
 
-run the executable
+The camera offers rich peripheral adaptation as noted [here](https://wiki.t-firefly.com/en/CAM-C11092U/Device_adaptation.html). It would be very useful to develop external circuits to utilize this:
 
-./run_rv1109_rv1126.sh 
-
-
-## future work:
-
-**Peripherals Adaptation**
-the camera offers rich peripheral adaptation as noted here. it would be very useful to develop external circuits to utilize this: 
-- GPIO: control pan / tilt 
-- GPIO: Control power on/off with an external timer. For instance, to turn off a the device for a specific period of time in order to conserve power use.
-- Ethernet support
-- i2c bus for sensors like imu, light, humidity 
-- UART interfaces
-- measuring battery charge
-
-https://wiki.t-firefly.com/en/CAM-C11092U/Device_adaptation.html
+- **GPIO**: Control pan/tilt.
+- **GPIO**: Control power on/off with an external timer (e.g., to conserve power by turning off the device for a specific period).
+- **Ethernet Support**
+- **I2C Bus**: For sensors like IMU, light, humidity.
+- **UART Interfaces**
+- **Battery Monitoring**: Measure battery charge.
