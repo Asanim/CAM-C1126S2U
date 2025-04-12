@@ -1,10 +1,8 @@
 #ifndef CAMERA_HANDLER_H
 #define CAMERA_HANDLER_H
 
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libavutil/imgutils.h>
-#include <libswscale/swscale.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/videoio.hpp>
 #include <stdexcept>
 #include <vector>
 #include <string>
@@ -20,11 +18,7 @@ public:
     static std::vector<std::string> listAvailableCameras();
 
 private:
-    AVFormatContext *format_ctx;
-    AVCodecContext *codec_ctx;
-    SwsContext *sws_ctx;
-    AVFrame *frame;
-    int video_stream_index;
+    cv::VideoCapture video_capture_; // OpenCV video capture object
 };
 
 #endif // CAMERA_HANDLER_H
