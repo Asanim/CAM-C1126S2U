@@ -45,12 +45,11 @@ int main(int argc, char **argv)
             if (!handler.runInference(rgb_data, height, width, channels))
             {
                 printf("Failed to run inference\n");
-                av_freep(&rgb_data);
+                delete[] rgb_data; // Replace av_freep with delete[]
                 break;
-
             }
 
-            av_freep(&rgb_data);
+            delete[] rgb_data; // Replace av_freep with delete[]
         }
     }
     catch (const std::exception &e)
