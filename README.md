@@ -4,9 +4,10 @@ This repository investigates application development on the RV1126, particularly
 
 Documentation: [CAM-C11092U Documentation](https://wiki.t-firefly.com/en/CAM-C11092U/index.html)
 
+To get setup quickly, we use precompiled arm 32bit binaries as dependencies for this project. These must be copied to the target device, otherwise the application will not work. 
+
 The camera itself is like an AI-enabled GoPro.
 
----
 
 ## Purpose
 
@@ -36,7 +37,6 @@ While the example app is called an SDK, it does not provide any method to compil
 
 - Infrared and LED floodlights, useful in scenarios of low brightness or nighttime monitoring.
 
----
 
 ## CAM-CRV1126S2U Specifications
 
@@ -54,19 +54,15 @@ While the example app is called an SDK, it does not provide any method to compil
 - **RTC**: Peripheral RTC
 - **Peripheral Interface**: Debug serial port, Type-C OTG interface, multi-function expansion interface
 
----
-
 ## Setup
 
 ```bash
 ./scripts init-build-machine.sh
 ```
 
----
-
 ## Building
 
-The target example is located in: `rknpu/rknn/rknn_api/examples/rknn_yolov5_demo`
+The target example this code is based on is located in: `rknpu/rknn/rknn_api/examples/rknn_yolov5_demo`. 
 
 ### Steps:
 1. Run the setup script:
@@ -86,7 +82,6 @@ The target example is located in: `rknpu/rknn/rknn_api/examples/rknn_yolov5_demo
    ./run_rv1109_rv1126.sh
    ```
 
----
 
 ## Future Work
 
