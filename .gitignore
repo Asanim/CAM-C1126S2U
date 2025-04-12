@@ -12,3 +12,6 @@ build/
 python/
 download/
 archive/
+
+lib/opencv/
+lib/opencv4/

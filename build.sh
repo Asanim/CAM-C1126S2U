@@ -9,7 +9,8 @@ set -e
 # for rk1806 armhf
 # GCC_COMPILER=~/opts/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf
 
-GCC_COMPILER=/tools/toolchains/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf
+# GCC_COMPILER=/tools/toolchains/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf
+GCC_COMPILER=/tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf
 
 # for rv1109/rv1126 armhf
 # GCC_COMPILER=${RV1109_TOOL_CHAIN}/bin/arm-linux-gnueabihf
