@@ -12,6 +12,8 @@ This repo does not conform to best practices, it only designed to setup the came
 
 For instance, we use precompiled arm 32bit binaries as dependencies for this project. This makes our application quite limited; it can only be built for the target arch, it does not keep up with any fixes or improvements made to source libraries. The lib folder must be copied to the target device, otherwise the application will not work either. 
 
+not to mention, you may run into the trap of manually resolving dynamic lib dependencies: copying library after library to the device.
+
 ## Purpose
 
 To investigate the time required to port our application to the target device.
