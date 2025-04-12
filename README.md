@@ -4,14 +4,17 @@ This repository investigates application development on the RV1126, particularly
 
 Documentation: [CAM-C11092U Documentation](https://wiki.t-firefly.com/en/CAM-C11092U/index.html)
 
-To get setup quickly, we use precompiled arm 32bit binaries as dependencies for this project. These must be copied to the target device, otherwise the application will not work. 
 
 The camera itself is like an AI-enabled GoPro.
 
+## WARNING
+This repo does not conform to best practices, it only designed to setup the camera in the shortest time possible. 
+
+For instance, we use precompiled arm 32bit binaries as dependencies for this project. This makes our application quite limited; it can only be built for the target arch, it does not keep up with any fixes or improvements made to source libraries. The lib folder must be copied to the target device, otherwise the application will not work either. 
 
 ## Purpose
 
-To investigate the time required to port our application to the target device as a standalone application.
+To investigate the time required to port our application to the target device.
 
 ### Objectives:
 1. Porting to the architecture of the device, including replacing hardware-dependent libraries (e.g., camera interfacing).
