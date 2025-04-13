@@ -4,6 +4,7 @@ echo "ensure you have the device connected to the host machine and is available 
 
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# build and run the original application
 install_inference_example() {
     echo "Installing inference example"
     adb push $SCRIPT_PATH/../rknpu/drivers/linux-armhf-puma/*   /
@@ -14,14 +15,26 @@ install_inference_example() {
 
     cd $SCRIPT_PATH/../rknpu/rknn/rknn_api/examples/rknn_yolov5_demo/
     ./build.sh
-
     adb push $SCRIPT_PATH/../rknpu/rknn/rknn_api/examples/rknn_yolov5_demo/install/rknn_yolov5_demo /userdata/
 }
 
-adb push $SCRIPT_PATH/target/start.sh /tmp/
-adb push $SCRIPT_PATH/target/install-aws-greengrass.sh /tmp/
-# adb push $SCRIPT_PATH/target/download/azul-zulu-java11-jdk.tar.gz /tmp/
-# adb push $SCRIPT_PATH/target/download/greengrass-nucleus-latest.zip /tmp/
+install_inference() {
+    $SCRIPT_PATH/.././build.sh
+    adb push $SCRIPT_PATH/../lib/* /lib/
+    adb push $SCRIPT_PATH/../install/rknn_yolov5_demo /userdata/
+    adb push $SCRIPT_PATH/../scripts/target/start.sh /oem/
 
-# Run install-aws-greengrass.sh on the device to install 
-adb shell "chmod +x /tmp/install-aws-greengrass.sh && /tmp/install-aws-greengrass.sh"
+    adb push /tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/lib/libstdc++.so.6 /lib/
+}
+
+install_greengrass() {
+    adb push $SCRIPT_PATH/target/start.sh /tmp/
+    adb push $SCRIPT_PATH/target/install-aws-greengrass.sh /tmp/
+    # adb push $SCRIPT_PATH/target/download/azul-zulu-java11-jdk.tar.gz /tmp/
+    # adb push $SCRIPT_PATH/target/download/greengrass-nucleus-latest.zip /tmp/
+
+    # Run install-aws-greengrass.sh on the device to install 
+    adb shell "chmod +x /tmp/install-aws-greengrass.sh && /tmp/install-aws-greengrass.sh"
+}
+
+install_inference
