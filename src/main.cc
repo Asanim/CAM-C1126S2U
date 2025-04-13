@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     }
 
     const char *model_path = argv[1];
-    const char *camera_url = "video=0"; // Adjust this for your camera input.
+    const char *camera_url = "video=0";
 
     try
     {

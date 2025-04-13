@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-CameraHandler::CameraHandler(const char *camera_url) : video_capture_(camera_url)
+CameraHandler::CameraHandler(const char *camera_url) : video_capture_(0)
 {
     if (!video_capture_.isOpened())
     {

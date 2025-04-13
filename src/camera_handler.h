@@ -16,9 +16,9 @@ public:
     bool getNextFrame(uint8_t **rgb_data, int &width, int &height, int &channels);
 
     static std::vector<std::string> listAvailableCameras();
-
 private:
     cv::VideoCapture video_capture_; // OpenCV video capture object
+    const char *camera_url_; // Camera URL or index
 };
 
 #endif // CAMERA_HANDLER_H
