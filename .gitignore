@@ -17,3 +17,9 @@ lib/opencv/
 lib/opencv4/
 lib/
 include/
+
+# AI model files
+*.rknn
+*.pt
+*.onnx
+yolo11n_rknn_model/
