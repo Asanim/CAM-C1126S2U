@@ -3,6 +3,23 @@ ArcFaceGo_RV1109_App/
 
 rknn-toolkit-lite/
 rknn-toolkit-lite.*
+
+.gitreview
+build/
+install/
+.vscode
 build/
 python/
 download/
+archive/
+
+lib/opencv/
+lib/opencv4/
+lib/
+include/
+
+# AI model files
+*.rknn
+*.pt
+*.onnx
+yolo11n_rknn_model/
